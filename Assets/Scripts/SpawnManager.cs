@@ -6,19 +6,21 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject ObstaclePrefab;
     private Vector3 spawnpoint = new Vector3(20, 0, 0);
+    private PlayerControl playercontroller;
     void Start()
     {
         InvokeRepeating("Spawn", 1, 2);
-        
+        playercontroller = GameObject.Find("Player").GetComponent<PlayerControl>();
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
     void Spawn()
     {
-        Instantiate(ObstaclePrefab, spawnpoint, ObstaclePrefab.transform.rotation);
+        if (playercontroller.gameover == false)
+        {
+            Instantiate(ObstaclePrefab, spawnpoint, ObstaclePrefab.transform.rotation);
+        }
+       
     }
 }
